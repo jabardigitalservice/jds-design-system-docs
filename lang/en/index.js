@@ -1,0 +1,20 @@
+export default {
+  label: {
+    start: 'Start',
+    design: 'Design',
+    typography: 'Typography',
+    colors: 'Colors',
+    iconography: 'Iconography',
+    layouting: 'Layouting',
+    components: 'Components',
+    headingContrast: 'Heading Contrast',
+    headingSpacing: 'Heading Spacing',
+    paragraphs: 'Paragraphs',
+    bodyText: 'Text Body',
+    fontSize: 'Font Size',
+    capitalLetter: 'Capital Letter',
+    textWeight: 'Text Weight',
+    paragraphSpacing: 'Paragraph Spacing',
+    lists: 'Lists',
+  },
+}

@@ -37,7 +37,22 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
   ],
-  modules: ['@nuxt/content'],
+  modules: ['nuxt-i18n', '@nuxt/content'],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en-US.js',
+      },
+      {
+        code: 'id',
+        file: 'id-ID.js',
+      },
+    ],
+    lazy: true,
+    langDir: 'lang/',
+    defaultLocale: 'id',
+  },
   // @nuxt/content ============================================================
   content: {
     markdown: {

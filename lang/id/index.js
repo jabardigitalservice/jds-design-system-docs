@@ -1,0 +1,20 @@
+export default {
+  label: {
+    start: 'Mulai',
+    design: 'Desain',
+    typography: 'Tipografi',
+    colors: 'Warna',
+    iconography: 'Ikonografi',
+    layouting: 'Tata Letak',
+    components: 'Komponen',
+    headingContrast: 'Kontras Heading',
+    headingSpacing: 'Spasi Heading',
+    paragraphs: 'Paragraf',
+    bodyText: 'Body Teks',
+    fontSize: 'Ukuran Font',
+    capitalLetter: 'Huruf Kapital',
+    textWeight: 'Ketebalan',
+    paragraphSpacing: 'Spasi Paragraf',
+    lists: 'Daftar',
+  },
+}
