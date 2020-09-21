@@ -1,38 +1,41 @@
 <template>
   <div>
-    <div
+    <NuxtContent :document="content" />
+    <!-- <div
       v-for="({ variants, mainVariant: mainVariantKey }, colorName) in colors"
       :key="colorName"
       class="color-row"
     >
       <JDSCard flat>
         <ReadabilityTest
-          :color-name="colorName"
+          :rounded="false"
+          :color-name="`${colorName}${mainVariantKey}`"
           :hex="variants[mainVariantKey].hex"
           :test-result="rTest[colorName][mainVariantKey]"
         />
       </JDSCard>
       <ColorPaletteList
+        :color-name="colorName"
         :variants="variants"
         :main-variant-key="mainVariantKey"
         :readability-test-results="rTest[colorName]"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import colors from '../../../assets/colors'
-import rTest from '../../../assets/colors/readability-test'
-
+/* eslint-disable vue/no-unused-components  */
 export default {
   name: 'Warna',
   components: {
-    JDSCard: () => import('../../../components/@JDS/Card'),
+    JdsCard: () => import('../../../components/@JDS/Card'),
     ReadabilityTest: () =>
       import('../../../components/@Docs/Colors/ReadabilityTest'),
-    ColorPaletteList: () =>
-      import('../../../components/@Docs/Colors/Palette/List'),
+    ReadabilityTestByVariant: () =>
+      import('../../../components/@Docs/Colors/ReadabilityTest/ByVariant'),
+    ColorPaletteListByColorName: () =>
+      import('../../../components/@Docs/Colors/Palette/ListByColorName'),
   },
   nuxtI18n: {
     paths: {
@@ -41,9 +44,11 @@ export default {
   },
   data() {
     return {
-      colors,
-      rTest,
+      content: null,
     }
+  },
+  async created() {
+    this.content = await this.$content('desain/warna').fetch()
   },
 }
 </script>

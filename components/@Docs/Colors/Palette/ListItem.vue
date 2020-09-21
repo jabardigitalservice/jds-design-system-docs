@@ -10,12 +10,16 @@
       <i></i>
     </div>
     <label class="app:color-palette-list-item__name">
-      {{ colorName }}
+      {{ variantName }}
     </label>
     <div v-show="showPopover" class="app:color-palette-list-item__popover">
-      <JDSCard borderless style="padding: 1rem; background-color: white">
+      <JDSCard style="padding: 1rem; background-color: white">
         <ReadabilityTest
-          v-bind="{ colorName, hex, testResult: readabilityTestResult }"
+          v-bind="{
+            colorName: `${colorName}${variantName}`,
+            hex,
+            testResult: readabilityTestResult,
+          }"
         />
       </JDSCard>
     </div>
@@ -34,6 +38,10 @@ export default {
       required: true,
     },
     colorName: {
+      type: String,
+      required: true,
+    },
+    variantName: {
       type: String,
       required: true,
     },

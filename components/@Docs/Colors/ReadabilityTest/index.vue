@@ -1,6 +1,9 @@
 <template>
   <div class="app:clr-read-test">
-    <div class="app:clr-read-test__cases" :style="{ backgroundColor: hex }">
+    <div
+      :class="['app:clr-read-test__cases', rounded && 'is-rounded']"
+      :style="{ backgroundColor: hex }"
+    >
       <div
         v-for="v in textVariants"
         :key="v"
@@ -48,6 +51,10 @@ const LIGHT = 'light'
 const DARK = 'dark'
 export default {
   props: {
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
     colorName: {
       type: String,
       required: true,
@@ -92,6 +99,10 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     padding: 1rem;
+
+    &.is-rounded {
+      border-radius: 8px;
+    }
   }
 
   &__case {

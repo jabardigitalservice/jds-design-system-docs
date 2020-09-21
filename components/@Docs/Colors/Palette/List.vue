@@ -8,7 +8,8 @@
       <ListItem
         v-if="variants[v]"
         :hex="variants[v].hex"
-        :color-name="v"
+        :color-name="colorName"
+        :variant-name="v"
         :is-active="variants[v].hex === activePaletteHex"
         :readability-test-result="getTestResult(v)"
         @click="activePaletteHex = variants[v].hex"
@@ -24,6 +25,10 @@ export default {
     ListItem,
   },
   props: {
+    colorName: {
+      type: String,
+      required: true,
+    },
     variants: {
       type: Object,
       required: true,
