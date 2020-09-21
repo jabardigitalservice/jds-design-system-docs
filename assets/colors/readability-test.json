@@ -120,8 +120,8 @@
         "21": true
       }
     }
-},
-"Hijau": {
+  },
+  "Hijau": {
     "50": {
       "light": {
         "14": false,
@@ -242,8 +242,8 @@
         "21": true
       }
     }
-},
-"Biru": {
+  },
+  "Biru": {
     "50": {
       "light": {
         "14": false,
@@ -364,8 +364,8 @@
         "21": true
       }
     }
-},
-"Pink": {
+  },
+  "Pink": {
     "50": {
       "light": {
         "14": false,
@@ -486,8 +486,8 @@
         "21": true
       }
     }
-},
-"Merah": {
+  },
+  "Merah": {
     "50": {
       "light": {
         "14": false,
@@ -608,8 +608,8 @@
         "21": true
       }
     }
-},
-"Ungu": {
+  },
+  "Ungu": {
     "50": {
       "light": {
         "14": false,
@@ -730,8 +730,8 @@
         "21": true
       }
     }
-},
-"Abu": {
+  },
+  "Abu": {
     "50": {
       "light": {
         "14": false,
@@ -852,8 +852,8 @@
         "21": false
       }
     }
-},
-"BiruAbu": {
+  },
+  "AbuBiru": {
     "50": {
       "light": {
         "14": false,
@@ -974,5 +974,29 @@
         "21": false
       }
     }
-  } 
+  },
+  "Hitam": {
+    "light": {
+      "14": true,
+      "16": true,
+      "21": true
+    },
+    "dark": {
+      "14": false,
+      "16": false,
+      "21": false
+    }
+  },
+  "Putih": {
+    "light": {
+      "14": true,
+      "16": true,
+      "21": true
+    },
+    "dark": {
+      "14": false,
+      "16": false,
+      "21": false
+    }
+  }
 }
