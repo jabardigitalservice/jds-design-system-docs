@@ -20,26 +20,26 @@ JDS sebelumnya telah memiliki kombinasi warna primer yaitu warna kuning, warna h
 <div class="flex -mx-2">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Kuning"
         variant="600">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Hijau"
         variant="600">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Biru"
         variant="600">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
 </div>
@@ -51,26 +51,26 @@ Warna sekunder memberikan pilihan aksen dari desain produk yang ditampilkan namu
 <div class="flex -mx-2">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Pink"
         variant="400">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Merah"
         variant="500">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Ungu"
         variant="400">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
 </div>
@@ -84,47 +84,23 @@ Umumnya warna netral digunakan untuk teks atau background yang memiliki aksen ya
     <jds-card flat>
       <readability-test
         color-name="Hitam"
-        hex="#000000"
-        :test-result="{
-          light: {
-            14: true,
-            16: true,
-            21: true,
-          },
-          dark: {
-            14: false,
-            16: false,
-            21: false,
-          }
-        }">
+        variant="default">
       </readability-test>
     </jds-card>
   </div>
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Abu"
         variant="900">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
   <div class="mx-2">
     <jds-card flat>
       <readability-test
         color-name="Putih"
-        hex="#FFFFF"
-        :test-result="{
-          light: {
-            14: false,
-            16: false,
-            21: false,
-          },
-          dark: {
-            14: true,
-            16: true,
-            21: true,
-          }
-        }">
+        variant="default">
       </readability-test>
     </jds-card>
   </div>
@@ -133,10 +109,10 @@ Umumnya warna netral digunakan untuk teks atau background yang memiliki aksen ya
 <div class="flex -mx-2">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
-        color-name="AbuBiru"
+      <readability-test
+        color-name="BiruAbu"
         variant="900">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
 </div>
@@ -151,46 +127,46 @@ Warna turunan adalah kumpulan semua warna (Primer, Skunder dan Netral) ditambah 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Kuning"
         variant="600">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Kuning">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Hijau"
         variant="600">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Hijau">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Biru"
         variant="600">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Biru">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 2. Warna Sekunder
@@ -198,46 +174,46 @@ Warna turunan adalah kumpulan semua warna (Primer, Skunder dan Netral) ditambah 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Pink"
         variant="400">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Pink">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Merah"
         variant="500">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Merah">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Ungu"
         variant="400">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Ungu">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 3. Warna Netral
@@ -245,31 +221,31 @@ Warna turunan adalah kumpulan semua warna (Primer, Skunder dan Netral) ditambah 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
+      <readability-test
         color-name="Abu"
         variant="900">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
     color-name="Abu">
-  </color-palette-list-by-color-name>
+  </color-palette>
 </div>
 
 <div class="flex items-center -mx-2 mb-4">
   <div class="mx-2">
     <jds-card flat>
-      <readability-test-by-variant
-        color-name="AbuBiru"
+      <readability-test
+        color-name="BiruAbu"
         variant="900">
-      </readability-test-by-variant>
+      </readability-test>
     </jds-card>
   </div>
-  <color-palette-list-by-color-name
+  <color-palette
     class="mx-2"
-    color-name="AbuBiru">
-  </color-palette-list-by-color-name>
+    color-name="BiruAbu">
+  </color-palette>
 </div>
 
 ## Penggunaan Warna

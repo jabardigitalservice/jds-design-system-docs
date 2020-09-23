@@ -1,76 +1,51 @@
 <template>
-  <div class="app:color-palette-list-item">
-    <div
-      :class="['app:color-palette-list-item__box', mIsActive && 'is-active']"
-      :style="{ backgroundColor: hex }"
-      @click="onClick"
-      @mouseenter="onMouseEnter"
-      @mouseleave="onMouseLeave"
-    >
-      <i></i>
-    </div>
-    <label class="app:color-palette-list-item__name">
-      {{ variantName }}
-    </label>
-    <div v-show="showPopover" class="app:color-palette-list-item__popover">
-      <JDSCard style="padding: 1rem; background-color: white">
-        <ReadabilityTest
-          v-bind="{
-            colorName: `${colorName}${variantName}`,
-            hex,
-            testResult: readabilityTestResult,
-          }"
-        />
-      </JDSCard>
-    </div>
+  <div class="clr-palette-item">
+    <template v-if="colorVariant">
+      <div
+        :class="['clr-palette-item__box', isActive && 'is-active']"
+        :style="{ backgroundColor: colorVariant.hex }"
+        @click="onClick"
+        @mouseenter="onMouseEnter"
+        @mouseleave="onMouseLeave"
+      >
+        <i></i>
+      </div>
+      <label class="clr-palette-item__name">
+        {{ colorVariant.variantName }}
+      </label>
+      <div v-show="showPopover" class="clr-palette-item__popover">
+        <JDSCard style="padding: 1rem; background-color: white">
+          <ReadabilityTest v-bind="{ colorVariant }" />
+        </JDSCard>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import { ColorVariant } from '~/config/colors/model'
 export default {
   components: {
     JDSCard: () => import('../../../@JDS/Card'),
     ReadabilityTest: () => import('../ReadabilityTest'),
   },
   props: {
-    hex: {
-      type: String,
-      required: true,
-    },
-    colorName: {
-      type: String,
-      required: true,
-    },
-    variantName: {
-      type: String,
-      required: true,
+    colorVariant: {
+      type: ColorVariant,
+      default: null,
     },
     isActive: {
       type: Boolean,
       default: false,
     },
-    readabilityTestResult: {
-      type: Object,
-      default: () => ({}),
-    },
   },
   data() {
     return {
       showPopover: false,
-      mIsActive: false,
     }
-  },
-  watch: {
-    isActive: {
-      immediate: true,
-      handler(v) {
-        this.mIsActive = v
-      },
-    },
   },
   methods: {
     onClick() {
-      this.mIsActive = true
       this.$emit('click')
     },
     onMouseEnter() {
@@ -85,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app\:color-palette-list-item {
+.clr-palette-item {
   position: relative;
 
   &__box {

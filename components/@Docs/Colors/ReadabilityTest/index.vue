@@ -1,39 +1,32 @@
 <template>
-  <div class="app:clr-read-test">
+  <div class="clr-readability">
     <div
-      :class="['app:clr-read-test__cases', rounded && 'is-rounded']"
+      :class="['clr-readability__grids', rounded && 'is-rounded']"
       :style="{ backgroundColor: hex }"
     >
       <div
-        v-for="v in textVariants"
-        :key="v"
-        :class="`app:clr-read-test__case is-${v.toLowerCase()}`"
+        v-for="(result, theme) in readabilityTestResult"
+        :key="theme"
+        :class="`clr-readability__grid is-${theme.toLowerCase()}`"
       >
-        <div
-          v-for="size in fontSizeTestCases"
-          :key="`${v}:${size}`"
-          class="app:clr-read-test__case-result"
-          :style="{ gridArea: `size-${size}` }"
-        >
-          <div style="display: inline-block">
-            <span
-              class="app:clr-read-test__case-result__text"
-              :style="{ fontSize: `${size}px` }"
-              >A</span
-            >
-            <label class="app:clr-read-test__case-result__value">
-              <slot :name="`case-${v}-${size}`">
-                {{ getTestResult(v, size) }}
-              </slot>
-            </label>
-          </div>
+        <div v-for="(passed, fontSize) in result" :key="`${theme}:${fontSize}`">
+          <span
+            class="clr-readability__targeted-font"
+            :style="{ fontSize: `${fontSize}px` }"
+            >A</span
+          >
+          <label class="clr-readability__value">
+            <slot :name="`case-${theme}-${fontSize}`">
+              {{ formatTestResult(passed) }}
+            </slot>
+          </label>
         </div>
       </div>
     </div>
-    <div class="app:clr-read-test__info">
+    <div class="clr-readability__info">
       <div>
         <label>Nama</label>
-        <p>{{ colorName }}</p>
+        <p>{{ variantName }}</p>
       </div>
       <div>
         <label>Hex</label>
@@ -44,57 +37,61 @@
 </template>
 
 <script>
-import _get from 'lodash/get'
+// import _get from 'lodash/get'
 import _isBool from 'lodash/isBoolean'
+import { ColorVariant } from '../../../../config/colors/model'
 
-const LIGHT = 'light'
-const DARK = 'dark'
 export default {
   props: {
+    colorVariant: {
+      type: ColorVariant,
+      default: null,
+    },
     rounded: {
       type: Boolean,
       default: false,
     },
-    colorName: {
-      type: String,
-      required: true,
-    },
-    hex: {
-      type: String,
-      required: true,
-    },
-    testResult: {
-      type: Object,
-      default: null,
-    },
   },
   data() {
-    return {
-      textVariants: [DARK, LIGHT],
-      fontSizeTestCases: [14, 16, 21],
-    }
+    return {}
+  },
+  computed: {
+    variantName() {
+      if (this.colorVariant instanceof ColorVariant) {
+        return this.colorVariant.variantName
+      }
+      return null
+    },
+    hex() {
+      if (this.colorVariant instanceof ColorVariant) {
+        return this.colorVariant.hex
+      }
+      return null
+    },
+    readabilityTestResult() {
+      if (this.colorVariant instanceof ColorVariant) {
+        return this.colorVariant.readabilityTestResult
+      }
+      return null
+    },
   },
   methods: {
-    getTestResult(variant, size) {
-      if (!this.testResult) {
-        return '?'
+    formatTestResult(passed) {
+      if (_isBool(passed)) {
+        return passed ? 'Pass' : 'Fail'
       }
-      const result = _get(this.testResult, `${variant}.${size}`)
-      if (_isBool(result)) {
-        return result ? 'Pass' : 'Fail'
-      }
-      return '?'
+      return '(?)'
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.app\:clr-read-test {
+.clr-readability {
   display: inline-block;
   border-radius: 0.5rem;
 
-  &__cases {
+  &__grids {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -105,33 +102,28 @@ export default {
     }
   }
 
-  &__case {
+  &__grid {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      'size-16 size-14'
-      'size-21 empty';
   }
 
-  &__case-result {
-    //
-    &__text {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      min-height: 21px;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
+  &__targeted-font {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 21px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
 
-    &__value {
-      display: inline-block;
-      border-radius: 4px;
-      padding: 0 1rem;
-      line-height: 2;
-      font-size: smaller;
-    }
+  &__value {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 0 1rem;
+    line-height: 2;
+    font-size: smaller;
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   &__info {
@@ -150,26 +142,22 @@ export default {
   }
 }
 
-.app\:clr-read-test__case.is-dark {
-  .app\:clr-read-test__case-result {
-    &__text {
+.clr-readability__grid {
+  &.is-dark {
+    .clr-readability__targeted-font {
       color: #212121;
     }
-
-    &__value {
+    .clr-readability__value {
       background-color: #212121;
       color: white;
     }
   }
-}
 
-.app\:clr-read-test__case.is-light {
-  .app\:clr-read-test__case-result {
-    &__text {
+  &.is-light {
+    .clr-readability__targeted-font {
       color: white;
     }
-
-    &__value {
+    .clr-readability__value {
       color: #212121;
       background-color: white;
     }
