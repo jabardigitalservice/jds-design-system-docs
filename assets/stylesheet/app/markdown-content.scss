@@ -1,0 +1,127 @@
+@use '../jds-design-system/variables/colors';
+
+.docs-markdown-content {
+  line-height: 1.618;
+
+  * {
+    color: colors.$abu-900;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+
+    & + p {
+      margin-top: 8px;
+    }
+  }
+
+  * + {
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1em;
+    }
+  }
+
+  h1 {
+    font-size: 49px;
+  }
+
+  h2 {
+    font-size: 37px;
+  }
+
+  h3 {
+    color: colors.$hijau-600;
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 21px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  h6 {
+    font-size: 14px;
+  }
+
+  .subtitle-1 {
+    font-size: 14px;
+  }
+
+  .subtitle-2 {
+    font-size: 13px;
+  }
+
+  p {
+    color: colors.$abu-800;
+
+    & + h1,
+    & + h2,
+    & + h3,
+    & + h4,
+    & + h5,
+    & + h6,
+    & + ol,
+    & + li,
+    & + p {
+      margin-top: 1em;
+    }
+  }
+
+  ol,
+  ul {
+    list-style-position: inside;
+  }
+
+  ol {
+    list-style-type: decimal-leading-zero;
+
+    > li + li {
+      margin-top: 2.5em;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  li {
+    font-size: 21px;
+    font-weight: 500;
+  }
+
+  li > p {
+    &:first-child {
+      font-size: inherit;
+      font-weight: inherit;
+      display: inline-block;
+
+      + * {
+        margin-top: 1.333em;
+      }
+    }
+
+    &:only-child {
+      display: inline;
+    }
+
+    &:not(:first-child),
+    &:only-child {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+  strong {
+    font-weight: bold;
+  }
+}
