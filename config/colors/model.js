@@ -44,12 +44,14 @@ export function ColorConfig(colorName) {
   return this
 }
 
-ColorConfig.prototype.addColorVariant = function (colorVariant) {
+ColorConfig.prototype.addColorVariant = function (colorName, colorVariant) {
   if (colorVariant instanceof ColorVariant) {
     if (colorVariant.variantName in this.variants) {
       throw new Error(`${colorVariant.variantName} already defined`)
     }
-    this.variants[colorVariant.variantName] = colorVariant
+    this.variants[colorVariant.variantName] = Object.assign(colorVariant, {
+      colorName,
+    })
     return this
   }
   throw new Error('colorVariant must be an instanceof ColorVariant')
@@ -75,7 +77,7 @@ export function createColorConfig(colorName, ...variants) {
   const config = new ColorConfig(colorName)
   if (Array.isArray(variants) && variants.length) {
     variants.forEach((v) => {
-      config.addColorVariant(v)
+      config.addColorVariant(colorName, v)
     })
   }
   return config
