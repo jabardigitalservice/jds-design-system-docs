@@ -55,6 +55,7 @@ export default {
   },
   // @nuxt/content ============================================================
   content: {
+    liveEdit: false,
     markdown: {
       rehypePlugins: [['rehype-add-classes', rehypeOptions]],
     },
