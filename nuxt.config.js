@@ -25,10 +25,10 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   css: [
-    '../assets/stylesheet/app/main.scss',
-    '../assets/stylesheet/jds-design-system/main.scss',
+    '~/assets/stylesheet/app/main.scss',
+    '~/assets/stylesheet/jds-design-system/main.scss',
   ],
-  plugins: [],
+  plugins: ['~/plugins/markdown-content-components.js'],
   // @nuxt/components ============================================================
   // disable auto import component
   components: false,
@@ -58,6 +58,13 @@ export default {
     liveEdit: false,
     markdown: {
       rehypePlugins: [['rehype-add-classes', rehypeOptions]],
+    },
+  },
+  tailwindcss: {
+    config: {
+      corePlugins: {
+        // preflight: false,
+      },
     },
   },
   build: {
