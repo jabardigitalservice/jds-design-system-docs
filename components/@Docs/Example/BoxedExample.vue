@@ -1,9 +1,9 @@
-<template functional>
+<template>
   <div class="boxed-example">
-    <h4 v-if="$slots.title" class="boxed-example__title">
+    <h4 v-if="hasSlot('title')" class="boxed-example__title">
       <slot name="title"></slot>
     </h4>
-    <p v-if="$slots.subtitle" class="boxed-example__subtitle">
+    <p v-if="hasSlot('subtitle')" class="boxed-example__subtitle">
       <slot name="subtitle"></slot>
     </p>
     <div class="boxed-example__content">
@@ -14,11 +14,19 @@
 
 <script>
 export default {
-  //
+  methods: {
+    hasSlot(slotName) {
+      return (
+        slotName in this.$scopedSlots &&
+        typeof this.$scopedSlots[slotName] === 'function'
+      )
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+@use '~/assets/stylesheet/jds-design-system/variables/colors';
 .boxed-example {
   text-align: left;
   padding: 1rem;
