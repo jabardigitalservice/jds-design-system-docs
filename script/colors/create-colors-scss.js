@@ -4,13 +4,17 @@ const fs = require('fs')
 const path = require('path')
 const { promisify } = require('util')
 const requireContext = require('require-context')
+const asyncMkdir = promisify(fs.mkdir)
 const asyncFsWriteFile = promisify(fs.writeFile)
+const _kebabCase = require('lodash/kebabCase')
 
 const { ColorConfig, ColorVariant } = require('../../config/colors/model')
 const ctx = requireContext('../../config/colors', true, /_.*\.js$/)
 
 async function run() {
-  let scss = ``
+  let variables = ``
+  let scss = `@use './variables/colors';`
+
   const colorConfigs = ctx.keys().map((path) => {
     const m = ctx(path)
     return m ? m.default || m : null
@@ -19,23 +23,40 @@ async function run() {
     if (config instanceof ColorConfig) {
       Object.entries(config.variants).forEach(([variantName, variant]) => {
         if (variant instanceof ColorVariant) {
-          let clr = config.colorName.toLowerCase()
+          let clr = _kebabCase(config.colorName)
           if (variantName !== 'default') {
-            clr += `-${variantName}`.toLowerCase()
+            clr += `-${_kebabCase(variantName)}`
           }
-          const text = `
+
+          const variableName = `$${clr}`
+          variables += `${variableName}: ${variant.hex} !default;\n`
+
+          scss += `
             .text-${clr} {
-              color: ${variant.hex};
+              color: colors.${variableName};
             }
             .background-${clr} {
-              background-color: ${variant.hex};
+              background-color: colors.${variableName};
             }
           `
-          scss += text
         }
       })
     }
   })
+  await asyncMkdir(
+    path.resolve(
+      __dirname,
+      '../../assets/stylesheet/jds-design-system/variables'
+    )
+  ).catch(() => {})
+  await asyncFsWriteFile(
+    path.resolve(
+      __dirname,
+      '../../assets/stylesheet/jds-design-system/variables/_colors.scss'
+    ),
+    variables,
+    { encoding: 'utf8' }
+  )
   await asyncFsWriteFile(
     path.resolve(
       __dirname,
