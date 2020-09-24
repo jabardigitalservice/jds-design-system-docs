@@ -26,7 +26,7 @@
     <div class="clr-readability__info">
       <div>
         <label>Nama</label>
-        <p>{{ variantName }}</p>
+        <p>{{ name }}</p>
       </div>
       <div>
         <label>Hex</label>
@@ -56,9 +56,13 @@ export default {
     return {}
   },
   computed: {
-    variantName() {
+    name() {
       if (this.colorVariant instanceof ColorVariant) {
-        return this.colorVariant.variantName
+        const { colorName, variantName } = this.colorVariant
+        if (variantName === 'default') {
+          return colorName
+        }
+        return `${colorName}${variantName}`
       }
       return null
     },
