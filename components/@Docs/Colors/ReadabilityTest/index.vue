@@ -92,7 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 .clr-readability {
-  display: inline-block;
+  display: block;
   border-radius: 0.5rem;
 
   &__grids {
@@ -134,6 +134,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 
     label {
       color: #9e9e9e;

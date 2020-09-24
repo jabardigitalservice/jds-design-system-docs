@@ -114,6 +114,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '~/assets/stylesheet/jds-design-system/variables/colors';
+
 .clr-table-of-usages {
   &__clr-name {
     display: flex;
@@ -131,6 +133,12 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  * {
+    color: colors.$abu-700;
+    font-weight: normal !important;
+    font-size: 1rem !important;
   }
 }
 </style>

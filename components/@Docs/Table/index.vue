@@ -1,47 +1,39 @@
 <template>
-  <div class="docs-table">
-    <span v-if="$slots.title" class="text-hijau-500">
-      <slot name="title"></slot>
-    </span>
-    <p v-if="$slots.subtitle">
-      <slot name="subtitle"></slot>
-    </p>
-    <table style="width: 100%">
-      <thead class="docs-table__thead">
-        <tr class="docs-table__tr">
-          <th v-for="(col, i) in columns" :key="i" class="docs-table__th">
-            {{ col.header }}
-          </th>
-        </tr>
-      </thead>
-      <tbody class="docs-table__tbody">
-        <tr
-          v-for="(row, rowIndex) in data"
-          :key="rowIndex"
-          class="docs-table__tr"
+  <table class="docs-table" style="width: 100%">
+    <thead class="docs-table__thead">
+      <tr class="docs-table__tr">
+        <th v-for="(col, i) in columns" :key="i" class="docs-table__th">
+          {{ col.header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="docs-table__tbody">
+      <tr
+        v-for="(row, rowIndex) in data"
+        :key="rowIndex"
+        class="docs-table__tr"
+      >
+        <td
+          v-for="(column, columnIndex) in columns"
+          :key="columnIndex"
+          class="docs-table__td"
         >
-          <td
-            v-for="(column, columnIndex) in columns"
-            :key="columnIndex"
-            class="docs-table__td"
+          <slot
+            :name="`column-${column.prop}`"
+            v-bind="{
+              row,
+              column,
+              rowIndex,
+              columnIndex,
+              value: getCellValue(row, column, rowIndex, columnIndex),
+            }"
           >
-            <slot
-              :name="`column-${column.prop}`"
-              v-bind="{
-                row,
-                column,
-                rowIndex,
-                columnIndex,
-                value: getCellValue(row, column, rowIndex, columnIndex),
-              }"
-            >
-              {{ getCellValue(row, column, rowIndex, columnIndex) }}
-            </slot>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            {{ getCellValue(row, column, rowIndex, columnIndex) }}
+          </slot>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -69,12 +61,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '~/assets/stylesheet/jds-design-system/variables/colors';
+
 .docs-table {
   text-align: left;
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 1px solid #e0e0e0;
-  background-color: #fafafa;
+
+  &__title {
+    color: colors.$hijau-500;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: colors.$abu-700;
+  }
 
   &__thead {
     .docs-table__th {
