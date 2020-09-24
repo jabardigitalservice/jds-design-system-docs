@@ -254,3 +254,5 @@ Tujuan penggunaan warna spesifik untuk kondisi atau komponen tertentu adalah unt
 Sebagai informasi tambahan kombinasi penggunaan warna dibawah ini adalah penggunaan warna default, jika memungkinkan, desainer dapat menggunakan kombinasi warna berbeda sesuai keinginannya.
 
 Berikut adalah petunjuk dan cara untuk penggunaan setiap warna di Sistem Warna JDS. 
+
+<table-of-usages></table-of-usages>

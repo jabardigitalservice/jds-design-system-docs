@@ -16,6 +16,8 @@ export default {
       ),
     ColorPalette: () =>
       import('../../../components/@Docs/Colors/PaletteByColorName'),
+    TableOfUsages: () =>
+      import('../../../components/@Docs/Colors/TableOfUsages'),
   },
   nuxtI18n: {
     paths: {
