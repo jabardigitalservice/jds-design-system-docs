@@ -14,7 +14,7 @@
     </div>
     <div class="opinionated-example-card__desc">
       <IconPlaceholder style="margin-right: 1rem; flex: none" />
-      <p>
+      <p style="font-weight: normal">
         <slot name="description"></slot>
       </p>
     </div>

@@ -60,8 +60,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '~/assets/stylesheet/jds-design-system/variables/colors';
+
 .clr-palette-item {
   position: relative;
+  font-size: 1rem;
+  font-weight: normal;
 
   &__box {
     position: relative;
@@ -101,6 +105,7 @@ export default {
   &__name {
     display: block;
     text-align: center;
+    color: colors.$abu-700;
   }
 
   &__popover {

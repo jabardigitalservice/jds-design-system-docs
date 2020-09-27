@@ -1,9 +1,9 @@
 <template functional>
-  <hr class="content-title-divider" />
+  <hr class="divider" />
 </template>
 
 <style lang="scss" scoped>
-.content-title-divider {
+.divider {
   display: block;
   width: 100%;
   margin-top: 48px;
