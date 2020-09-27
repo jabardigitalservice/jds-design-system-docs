@@ -5,20 +5,24 @@
       :style="{ backgroundColor: hex }"
     >
       <div
-        v-for="(result, theme) in readabilityTestResult"
-        :key="theme"
-        :class="`clr-readability__grid is-${theme.toLowerCase()}`"
+        v-for="(color, colorIndex) in config.colors"
+        :key="colorIndex"
+        class="clr-readability__grid"
       >
-        <div v-for="(passed, fontSize) in result" :key="`${theme}:${fontSize}`">
+        <div
+          v-for="(fontSize, fontSizeIndex) in config.fontSizes"
+          :key="fontSizeIndex"
+        >
           <span
             class="clr-readability__targeted-font"
-            :style="{ fontSize: `${fontSize}px` }"
+            :style="{ fontSize: `${fontSize}px`, color: color.text }"
             >A</span
           >
-          <label class="clr-readability__value">
-            <slot :name="`case-${theme}-${fontSize}`">
-              {{ formatTestResult(passed) }}
-            </slot>
+          <label
+            class="clr-readability__value"
+            :style="{ backgroundColor: color.text, color: color.label }"
+          >
+            {{ getContrastTestResult(color.text, fontSize) }}
           </label>
         </div>
       </div>
@@ -37,9 +41,10 @@
 </template>
 
 <script>
-// import _get from 'lodash/get'
-import _isBool from 'lodash/isBoolean'
 import { ColorVariant } from '../../../../config/colors/model'
+import ColorContrastChecker from '../../../../lib/color-contrast-checker'
+
+const contrastChecker = new ColorContrastChecker()
 
 export default {
   props: {
@@ -53,7 +58,21 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      config: {
+        fontSizes: [14, 16, 21],
+        colors: [
+          {
+            text: '#FFFFFF',
+            label: '#212121',
+          },
+          {
+            text: '#212121',
+            label: '#FFFFFF',
+          },
+        ],
+      },
+    }
   },
   computed: {
     name() {
@@ -72,19 +91,14 @@ export default {
       }
       return null
     },
-    readabilityTestResult() {
-      if (this.colorVariant instanceof ColorVariant) {
-        return this.colorVariant.readabilityTestResult
-      }
-      return null
-    },
   },
   methods: {
-    formatTestResult(passed) {
-      if (_isBool(passed)) {
-        return passed ? 'Pass' : 'Fail'
+    getContrastTestResult(textColor, fontSize) {
+      if (!this.hex) {
+        return '?'
       }
-      return '(?)'
+      const passed = contrastChecker.isLevelAA(this.hex, textColor, fontSize)
+      return passed ? 'Pass' : 'Fail'
     },
   },
 }
@@ -97,9 +111,10 @@ export default {
 
   &__grids {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
     padding: 1rem;
+    gap: 1em;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 0.875rem;
 
     &.is-rounded {
       border-radius: 8px;
@@ -107,42 +122,48 @@ export default {
   }
 
   &__grid {
+    width: 100%;
+    overflow: hidden;
     display: grid;
-    gap: 1rem;
+    gap: 1em;
     grid-template-columns: repeat(2, 1fr);
+    text-align: center;
   }
 
   &__targeted-font {
     display: flex;
+    width: 100%;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     min-height: 21px;
     line-height: 1;
     margin-bottom: 0.5rem;
   }
 
   &__value {
-    display: inline-block;
+    display: block;
     border-radius: 4px;
-    padding: 0 1rem;
     line-height: 2;
-    font-size: smaller;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: normal;
   }
 
   &__info {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.875rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 
     label {
+      display: block;
       color: #9e9e9e;
-      font-size: smaller;
+      font-size: 0.875rem;
     }
 
     p {
       color: #424242;
+      font-size: 1rem;
+      font-weight: normal;
     }
   }
 }
