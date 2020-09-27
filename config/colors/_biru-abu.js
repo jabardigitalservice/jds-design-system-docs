@@ -5,18 +5,7 @@ const mainVariantName = '900'
 
 export default createColorConfig(
   colorName,
-  new ColorVariant('50', '#E3E7ED').withReadabilityTestResult({
-    light: {
-      14: false,
-      16: false,
-      21: false,
-    },
-    dark: {
-      14: true,
-      16: true,
-      21: true,
-    },
-  }),
+  new ColorVariant('50', '#E3E7ED'),
   new ColorVariant('100', '#B9C3D3'),
   new ColorVariant('200', '#8D9DB5'),
   new ColorVariant('300', '#627798'),

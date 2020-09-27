@@ -1,40 +1,22 @@
-const defaultReadabilityTestResult = {
-  14: false,
-  16: false,
-  21: false,
-}
-
 export function ColorVariant(variantName, hex) {
+  this.colorName = null
   this.variantName = variantName
   this.hex = hex
-  this.readabilityTestResult = {
-    light: defaultReadabilityTestResult,
-    dark: defaultReadabilityTestResult,
+  return this
+}
+
+ColorVariant.fromJSON = function (json) {
+  if (!json || typeof json !== 'object') {
+    throw new TypeError('json must a plain object literal')
   }
-  this.usages = {
-    main: [],
-    alternative: [],
+  const { variantName, hex } = json
+  if (!variantName) {
+    throw new Error('variantName is required')
   }
-  return this
-}
-
-ColorVariant.prototype.withReadabilityTestResult = function ({
-  light = defaultReadabilityTestResult,
-  dark = defaultReadabilityTestResult,
-}) {
-  this.readabilityTestResult.light = light
-  this.readabilityTestResult.dark = dark
-  return this
-}
-
-ColorVariant.prototype.setMainUsage = function (...usages) {
-  this.usages.main.push(...usages)
-  return this
-}
-
-ColorVariant.prototype.setAlternativeUsage = function (...usages) {
-  this.usages.alternative.push(...usages)
-  return this
+  if (!hex) {
+    throw new Error('hex is required')
+  }
+  return new ColorVariant(variantName, hex)
 }
 
 export function ColorConfig(colorName) {
@@ -71,6 +53,29 @@ ColorConfig.prototype.getMainColorVariant = function (variantName) {
 
 ColorConfig.prototype.getColorVariant = function (variantName) {
   return this.variants[variantName]
+}
+
+ColorConfig.fromJSON = function (json) {
+  if (!json || typeof json !== 'object') {
+    throw new TypeError('json must a plain object literal')
+  }
+  const { colorName, mainVariantName, variants } = json
+  if (!colorName) {
+    throw new Error(`colorName is required`)
+  }
+  const config = new ColorConfig(colorName)
+  if (mainVariantName) {
+    config.setMainColorVariant(mainVariantName)
+  }
+  if (variants && typeof variants === 'object') {
+    for (const v of variants) {
+      if (v && typeof v === 'object') {
+        const colorVariant = new ColorVariant(v.variantName, v.hex)
+        config.addColorVariant(colorVariant)
+      }
+    }
+  }
+  return config
 }
 
 export function createColorConfig(colorName, ...variants) {
