@@ -5,18 +5,7 @@ const mainVariantName = '900'
 
 export default createColorConfig(
   colorName,
-  new ColorVariant('50', '#FAFAFA').withReadabilityTestResult({
-    light: {
-      14: false,
-      16: false,
-      21: false,
-    },
-    dark: {
-      14: true,
-      16: true,
-      21: true,
-    },
-  }),
+  new ColorVariant('50', '#FAFAFA'),
   new ColorVariant('100', '#F5F5F5'),
   new ColorVariant('200', '#EEEEEE'),
   new ColorVariant('300', '#E0E0E0'),
@@ -26,6 +15,4 @@ export default createColorConfig(
   new ColorVariant('700', '#616161'),
   new ColorVariant('800', '#424242'),
   new ColorVariant('900', '#212121')
-    .setMainUsage('Teks judul/title', 'Teks label input')
-    .setAlternativeUsage('Di semua tempat yang dibutuhkan')
 ).setMainColorVariant(mainVariantName)

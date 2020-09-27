@@ -5,18 +5,7 @@ const mainVariantName = '500'
 
 export default createColorConfig(
   colorName,
-  new ColorVariant('50', '#FFEBEE').withReadabilityTestResult({
-    light: {
-      14: false,
-      16: false,
-      21: false,
-    },
-    dark: {
-      14: true,
-      16: true,
-      21: true,
-    },
-  }),
+  new ColorVariant('50', '#FFEBEE'),
   new ColorVariant('100', '#FFCDD2'),
   new ColorVariant('200', '#EF9A9A'),
   new ColorVariant('300', '#E57373'),
