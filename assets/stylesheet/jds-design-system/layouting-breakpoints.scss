@@ -1,0 +1,101 @@
+@use 'variables/_layouting-breakpoints.scss' as bp;
+
+@media screen and (min-width: bp.$xs-breakpoint-min-width) and (max-width: bp.$xs-breakpoint-max-width) {
+  .jds-row {
+    margin: -(bp.$xs-column-gutter);
+    padding: bp.$xs-row-margin / 2;
+
+    .jds-col {
+      padding: bp.$xs-column-gutter / 2;
+      flex: 1 1 auto;
+    }
+
+    .jds-col.jds-col-xs--1 {
+      width: 100%;
+      flex: none;
+    }
+
+    $cols: bp.$xs-num-of-columns;
+    @for $i from 1 through $cols {
+      .jds-col.jds-col-xs--#{$i}\/#{$cols} {
+        width: (100% * $i / $cols);
+        flex: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: bp.$sm-breakpoint-min-width) and (max-width: bp.$sm-breakpoint-max-width) {
+  .jds-row {
+    margin: -(bp.$sm-column-gutter);
+    padding: bp.$sm-row-margin / 2;
+
+    .jds-col {
+      padding: bp.$sm-column-gutter / 2;
+      flex: 1 1 auto;
+    }
+
+    .jds-col.jds-col-sm--1 {
+      width: 100%;
+      flex: none;
+    }
+
+    $cols: bp.$sm-num-of-columns;
+    @for $i from 1 through $cols {
+      .jds-col.jds-col-sm--#{$i}\/#{$cols} {
+        width: (100% * $i / $cols);
+        flex: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: bp.$md-breakpoint-min-width) and (max-width: bp.$md-breakpoint-max-width) {
+  .jds-row {
+    margin: -(bp.$md-column-gutter);
+    padding: bp.$md-row-margin / 2;
+
+    .jds-col {
+      padding: bp.$md-column-gutter / 2;
+      flex: 1 1 auto;
+    }
+
+    .jds-col.jds-col-md--1 {
+      width: 100%;
+      flex: none;
+    }
+
+    $cols: bp.$md-num-of-columns;
+    @for $i from 1 through $cols {
+      .jds-col.jds-col-md--#{$i}\/#{$cols} {
+        width: (100% * $i / $cols);
+        flex: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: bp.$lg-breakpoint-min-width) and (max-width: bp.$lg-breakpoint-max-width) {
+  .jds-row {
+    margin: -(bp.$lg-column-gutter);
+    padding: bp.$lg-row-margin / 2;
+
+    .jds-col {
+      padding: bp.$lg-column-gutter / 2;
+      flex: 1 1 auto;
+    }
+
+    .jds-col.jds-col-lg--1 {
+      width: 100%;
+      flex: none;
+    }
+
+    $cols: bp.$lg-num-of-columns;
+    @for $i from 1 through $cols {
+      .jds-col.jds-col-lg--#{$i}\/#{$cols} {
+        width: (100% * $i / $cols);
+        flex: none;
+      }
+    }
+  }
+}

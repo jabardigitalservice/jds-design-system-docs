@@ -1,0 +1,27 @@
+// Breakpoint xs
+$xs-breakpoint-min-width: 0px;
+$xs-breakpoint-max-width: 599px;
+$xs-column-gutter: 16px;
+$xs-num-of-columns: 4;
+$xs-row-margin: 16px;
+
+// Breakpoint sm
+$sm-breakpoint-min-width: 600px;
+$sm-breakpoint-max-width: 719px;
+$sm-column-gutter: 16px;
+$sm-num-of-columns: 8;
+$sm-row-margin: 16px;
+
+// Breakpoint md
+$md-breakpoint-min-width: 720px;
+$md-breakpoint-max-width: 834px;
+$md-column-gutter: 24px;
+$md-num-of-columns: 8;
+$md-row-margin: 24px;
+
+// Breakpoint lg
+$lg-breakpoint-min-width: 835px;
+$lg-breakpoint-max-width: 9999px;
+$lg-column-gutter: 24px;
+$lg-num-of-columns: 12;
+$lg-row-margin: 24px;

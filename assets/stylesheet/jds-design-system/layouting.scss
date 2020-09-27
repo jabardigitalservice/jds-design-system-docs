@@ -1,0 +1,52 @@
+.jds-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .jds-col--1 {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.jds-row.jds-row--no-wrap {
+  flex-wrap: nowrap;
+}
+
+.jds-row.jds-row--padded {
+  margin: 0 !important;
+}
+
+.jds-row.jds-row--no-gutters {
+  margin: 0 !important;
+
+  .jds-col {
+    margin: 0 !important;
+  }
+}
+
+.jds-row {
+  &.jds-row-justify {
+    &--start {
+      justify-content: flex-start;
+    }
+    &--center {
+      justify-content: center;
+    }
+    &--end {
+      justify-content: flex-end;
+    }
+  }
+
+  .jds-row-align {
+    &--start {
+      align-items: flex-start;
+    }
+    &--center {
+      align-items: center;
+    }
+    &--end {
+      align-items: flex-end;
+    }
+  }
+}
