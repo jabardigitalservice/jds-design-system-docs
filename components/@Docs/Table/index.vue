@@ -64,6 +64,8 @@ export default {
 @use '~/assets/stylesheet/jds-design-system/variables/colors';
 
 .docs-table {
+  font-size: 1rem;
+  font-weight: normal;
   text-align: left;
 
   &__title {
@@ -77,6 +79,7 @@ export default {
 
   &__thead {
     .docs-table__th {
+      vertical-align: top;
       padding: 1rem 1.5rem;
     }
     .docs-table__th:first-child {
@@ -90,7 +93,7 @@ export default {
 
   &__tbody {
     .docs-table__td {
-      vertical-align: baseline;
+      vertical-align: top;
       padding: 1rem 1.5rem;
       border: 1px solid #ddd;
       border: 1px solid #ddd;
