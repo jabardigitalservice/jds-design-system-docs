@@ -5,6 +5,7 @@ export default {
     typography: 'Typography',
     colors: 'Colors',
     iconography: 'Iconography',
+    spacing: 'Spacing',
     layouting: 'Layouting',
     components: 'Components',
     headingContrast: 'Heading Contrast',

@@ -5,6 +5,7 @@ export default {
     typography: 'Tipografi',
     colors: 'Warna',
     iconography: 'Ikonografi',
+    spacing: 'Spacing',
     layouting: 'Tata Letak',
     components: 'Komponen',
     headingContrast: 'Kontras Heading',

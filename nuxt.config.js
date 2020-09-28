@@ -14,6 +14,8 @@ const dartSass = {
 
 export default {
   // serve as static page
+  ssr: false,
+  mode: 'spa',
   target: 'static',
   head: {
     title: 'Design System - Jabar Digital Service',
@@ -66,9 +68,7 @@ export default {
     lazy: true,
     langDir: 'lang/',
     defaultLocale: 'id',
-    vueI18n: {
-      fallbackLocale: 'id',
-    },
+    detectBrowserLanguage: false,
   },
   // @nuxt/content ============================================================
   content: {
