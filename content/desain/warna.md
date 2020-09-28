@@ -1,6 +1,115 @@
 ---
 title: Warna
 description: ...
+colorUsages:
+  Abu:
+    900:
+      main:
+      - Teks judul/title
+      - Teks label input
+      alt:
+      - Di semua tempat yang dibutuhkan
+    800:
+      main:
+      - Teks body
+      - Teks deskripsi
+      alt:
+      - Teks subjudul
+      - Icon
+      - Link
+    600:
+      main:
+      - State inaktif icon
+      alt:
+      - Teks deskripsi
+    500:
+      main:
+      - Teks tombol sekunder
+      - Teks tombol disable
+      alt:
+      - Icon
+    400:
+      main:
+      - Border input
+      - Separator/divider
+      alt:
+      - Di semua tempat yang dibutuhkan
+    300:
+      main:
+      - Border tombol sekunder
+      alt:
+      - Di semua tempat yang dibutuhkan
+  BiruAbu:
+    700:
+      main:
+      - Teks link active
+      alt:
+      - Di semua tempat yang dibutuhkan 
+    900:
+      main:
+      - Teks judul/title
+      alt:
+      - Di semua tempat yang dibutuhkan
+  Hijau:
+    600:
+      main:
+      - Tombol primer/utama
+      - State dan teks positif
+      - State dan teks sukses
+      - Aksi utama
+      alt:
+      - Teks subjudul
+      - Warna latar info
+      - Warna latar pesan
+      - Teks Link
+    700:
+      main:
+      - Tombol hover state
+      alt:
+      - Di semua tempat yang dibutuhkan
+    800:
+      main:
+      - Tombol aktif/klik state
+      alt:
+      - Di semua tempat yang dibutuhkan
+  Biru:
+    600:
+      main:
+      - Teks link
+      alt:
+      - Di semua tempat yang dibutuhkan
+    800:
+      main:
+      - Teks link hover
+      alt:
+      - Di semua tempat yang dibutuhkan
+  Ungu:
+    700:
+      main:
+      - Teks link visited
+      alt:
+      - Di semua tempat yang dibutuhkan
+  Merah:
+    700:
+      main:
+      - Semua teks error
+      - Border error
+      alt:
+      - Di semua tempat yang dibutuhkan
+    900:
+      main:
+      - State negatif (aksi, tombol)
+      alt:
+      - Warna latar info
+      - Warna latar pesan
+  Kuning:
+    700:
+      main:
+      - State warning
+      alt:
+      - Border warning
+      - Di semua tempat yang dibutuhkan
+
 ---
 
 # Warna
@@ -288,6 +397,7 @@ Berikut adalah petunjuk dan cara untuk penggunaan setiap warna di Sistem Warna J
     <template #subtitle>
       Klik pada kode hexa untuk mengcopy kode warnanya.
     </template>
-    <table-of-usages></table-of-usages>
+    <table-of-usages :usages="colorUsages">
+    </table-of-usages>
   </boxed-example>
 </p>
