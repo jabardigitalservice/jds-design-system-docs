@@ -4,13 +4,21 @@
       <DocsSidebar />
     </aside>
     <main class="app:layout-docs__main">
-      <nuxt-child></nuxt-child>
+      <JDSRow>
+        <JDSColumn col-lg="9/12">
+          <nuxt-child></nuxt-child>
+        </JDSColumn>
+        <JDSColumn></JDSColumn>
+      </JDSRow>
     </main>
   </div>
 </template>
 
 <script>
+import JDSRow from '../components/@JDS/Layouting/Row'
+import JDSColumn from '../components/@JDS/Layouting/Column'
 import DocsSidebar from '../components/@Docs/DocsSidebar'
+import ContentTitleDivider from '../components/@Docs/ContentTitleDivider'
 
 export default {
   name: 'Dokumentasi',
@@ -20,7 +28,11 @@ export default {
     },
   },
   components: {
+    // eslint-disable-next-line vue/no-unused-components
+    ContentTitleDivider,
     DocsSidebar,
+    JDSRow,
+    JDSColumn,
   },
 }
 </script>
