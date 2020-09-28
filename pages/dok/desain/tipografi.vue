@@ -8,20 +8,10 @@
 /* eslint-disable vue/no-unused-components  */
 export default {
   name: 'Warna',
-  components: {
-    JdsCard: () => import('../../../components/@JDS/Card'),
-    ReadabilityTest: () =>
-      import(
-        '../../../components/@Docs/Colors/ReadabilityTestByColorVariantName'
-      ),
-    ColorPalette: () =>
-      import('../../../components/@Docs/Colors/PaletteByColorName'),
-    TableOfUsages: () =>
-      import('../../../components/@Docs/Colors/TableOfUsages'),
-  },
+  components: {},
   nuxtI18n: {
     paths: {
-      en: '/colors',
+      en: '/typography',
     },
   },
   data() {
@@ -30,7 +20,7 @@ export default {
     }
   },
   async created() {
-    this.content = await this.$content('desain/warna').fetch()
+    this.content = await this.$content('desain/tipografi').fetch()
   },
 }
 </script>
