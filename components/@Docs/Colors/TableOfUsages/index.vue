@@ -11,7 +11,8 @@
       Klik pada kode hexa untuk mengcopy kode warnanya.
     </template>
 
-    <!-- TEMPLATING PER COLUMN -->
+    <!-- START: TEMPLATING PER COLUMN -->
+    <!-- TEMPLATING FOR `name` prop -->
     <template v-slot:column-name="{ value: colorName, row }">
       <div class="clr-table-of-usages__clr-name">
         <i class="clr-dot" :style="{ backgroundColor: row.hex }"></i>
@@ -20,35 +21,45 @@
         </span>
       </div>
     </template>
-    <template v-slot:column-mainUsage="{ value: usages }">
+
+    <!-- TEMPLATING FOR `main` prop -->
+    <template v-slot:column-main="{ value: mainUsages }">
       <ul>
-        <li v-for="(u, i) in usages" :key="i">
+        <li v-for="(u, index) in mainUsages" :key="index">
           {{ u }}
         </li>
       </ul>
     </template>
-    <template v-slot:column-alternativeUsage="{ value: usages }">
+
+    <!-- TEMPLATING FOR `alt` prop -->
+    <template v-slot:column-alt="{ value: altUsages }">
       <ul>
-        <li v-for="(u, i) in usages" :key="i">
+        <li v-for="(u, index) in altUsages" :key="index">
           {{ u }}
         </li>
       </ul>
     </template>
+
+    <!-- TEMPLATING FOR `hex` prop -->
     <template v-slot:column-hex="{ value: hex }">
-      <div class="clr-table-of-usages__hex">
+      <div
+        class="clr-table-of-usages__hex"
+        @click="onCopyColorToClipboard(hex)"
+      >
         <span>
           {{ hex }}
         </span>
         <IconPlaceholder />
       </div>
     </template>
+    <!-- END: TEMPLATING PER COLUMN -->
   </DocsTable>
 </template>
 
 <script>
 import IconPlaceholder from '../../../../components/@JDS/IconPlaceholder'
 import { ColorConfig, ColorVariant } from '../../../../config/colors/model'
-import colors from '../../../../config/colors'
+import colorConfigs from '../../../../config/colors'
 import DocsTable from '../../Table'
 
 export default {
@@ -56,9 +67,15 @@ export default {
     DocsTable,
     IconPlaceholder,
   },
+  props: {
+    usages: {
+      type: Object,
+      default: null,
+    },
+  },
   data() {
     return {
-      colors: Object.freeze(colors),
+      colorConfigs: Object.freeze(colorConfigs),
       tableColumns: [
         {
           header: 'Nama Warna',
@@ -66,11 +83,11 @@ export default {
         },
         {
           header: 'Penggunaan Utama',
-          prop: 'mainUsage',
+          prop: 'main',
         },
         {
           header: 'Penggunaan Alternatif',
-          prop: 'alternativeUsage',
+          prop: 'alt',
         },
         {
           header: 'Kode Hexa',
@@ -81,33 +98,47 @@ export default {
   },
   computed: {
     tableData() {
-      const colorsToUse = {
-        Abu: ['900', '800', '600', '500', '400', '300'],
-        BiruAbu: ['900', '700'],
-        Hijau: ['600', '700', '800'],
-        Biru: ['600', '800'],
-        Ungu: ['700'],
-        Merah: ['900', '700'],
-        Kuning: ['700'],
+      if (!this.usages) {
+        return []
       }
+      const colorNames = Object.keys(this.usages)
+      if (!colorNames.length) {
+        return []
+      }
+
       const data = []
-      Object.entries(colorsToUse).forEach(([colorName, variants]) => {
-        const config = colors[colorName]
+      for (const colorName of colorNames) {
+        const config = this.colorConfigs[colorName]
         if (config instanceof ColorConfig) {
-          Object.values(colorsToUse[colorName]).forEach((v) => {
-            const variant = config.getColorVariant(v)
-            if (variant instanceof ColorVariant) {
+          const colorUsage = this.usages[colorName]
+          const variants = Object.keys(colorUsage)
+
+          for (const variantName of Object.values(variants)) {
+            const colorVariant = config.getColorVariant(variantName)
+            if (colorVariant instanceof ColorVariant) {
               data.push({
-                name: `${colorName}${variant.variantName}`,
-                mainUsage: variant.usages.main,
-                alternativeUsage: variant.usages.alternative,
-                hex: variant.hex,
+                name: `${colorName}${variantName}`,
+                hex: colorVariant.hex,
+                main: colorUsage[variantName].main,
+                alt: colorUsage[variantName].alt,
               })
             }
-          })
+          }
         }
-      })
+      }
       return data
+    },
+  },
+  methods: {
+    async onCopyColorToClipboard(hex) {
+      try {
+        if (navigator && navigator.clipboard) {
+          await navigator.clipboard.writeText(hex)
+          alert(`${hex} copied to clipboard`)
+        }
+      } catch (e) {
+        console.error(e)
+      }
     },
   },
 }
@@ -117,6 +148,12 @@ export default {
 @use '~/assets/stylesheet/jds-design-system/variables/colors';
 
 .clr-table-of-usages {
+  * {
+    color: colors.$abu-700;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+
   &__clr-name {
     display: flex;
     align-items: center;
@@ -130,15 +167,28 @@ export default {
     }
   }
   &__hex {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    > span {
+      margin-right: 1em;
+      color: inherit;
+    }
+
+    &:hover {
+      color: colors.$hijau-700;
+    }
   }
 
-  * {
-    color: colors.$abu-700;
-    font-weight: normal !important;
-    font-size: 1rem !important;
+  ul {
+    margin: 0;
+    list-style-type: disc;
+
+    > li + li {
+      margin-top: 0;
+    }
   }
 }
 </style>
