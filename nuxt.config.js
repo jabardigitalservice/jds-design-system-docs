@@ -29,6 +29,9 @@ export default {
     '~/assets/stylesheet/jds-design-system/main.scss',
   ],
   plugins: ['~/plugins/markdown-content-components.js'],
+  router: {
+    middleware: ['maintenance'],
+  },
   // @nuxt/components ============================================================
   // disable auto import component
   components: false,
