@@ -37,6 +37,11 @@
 
 <script>
 export default {
+  nuxtI18n: {
+    paths: {
+      en: '/docs',
+    },
+  },
   name: 'Dokumentasi',
   data() {
     return {

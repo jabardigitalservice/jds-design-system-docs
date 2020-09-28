@@ -32,6 +32,9 @@ export default {
   router: {
     middleware: ['maintenance'],
   },
+  generate: {
+    fallback: true,
+  },
   // @nuxt/components ============================================================
   // disable auto import component
   components: false,
@@ -40,7 +43,15 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
   ],
-  modules: ['nuxt-i18n', '@nuxt/content'],
+  modules: [
+    [
+      'nuxt-i18n',
+      {
+        strategy: 'no_prefix',
+      },
+    ],
+    '@nuxt/content',
+  ],
   i18n: {
     locales: [
       {
@@ -55,6 +66,9 @@ export default {
     lazy: true,
     langDir: 'lang/',
     defaultLocale: 'id',
+    vueI18n: {
+      fallbackLocale: 'id',
+    },
   },
   // @nuxt/content ============================================================
   content: {

@@ -11,7 +11,7 @@ export default {
   components: {},
   nuxtI18n: {
     paths: {
-      en: '/spacing',
+      en: '/docs/design/spacing',
     },
   },
   data() {
