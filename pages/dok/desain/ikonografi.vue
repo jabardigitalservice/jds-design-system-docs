@@ -11,7 +11,7 @@ export default {
   components: {},
   nuxtI18n: {
     paths: {
-      en: '/iconography',
+      en: '/docs/design/iconography',
     },
   },
   data() {

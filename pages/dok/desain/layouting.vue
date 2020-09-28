@@ -11,7 +11,7 @@ export default {
   components: {},
   nuxtI18n: {
     paths: {
-      en: '/layouting',
+      en: '/docs/design/layouting',
     },
   },
   data() {

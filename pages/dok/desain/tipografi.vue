@@ -11,7 +11,7 @@ export default {
   components: {},
   nuxtI18n: {
     paths: {
-      en: '/typography',
+      en: '/docs/design/typography',
     },
   },
   data() {

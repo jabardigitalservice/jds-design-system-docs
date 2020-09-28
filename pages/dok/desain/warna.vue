@@ -21,7 +21,7 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/colors',
+      en: '/docs/design/colors',
     },
   },
   data() {
