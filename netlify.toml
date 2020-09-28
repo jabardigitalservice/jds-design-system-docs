@@ -1,0 +1,5 @@
+[context.production.environment]
+  NODE_ENV = "production"
+  NUXT_ENV_IS_MAINTENANCE = 1
+[context.staging.environment]
+  NODE_ENV = "staging"
