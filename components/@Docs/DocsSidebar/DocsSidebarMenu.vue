@@ -44,11 +44,6 @@ export default {
     return {
       menuGroups: [
         {
-          label: this.$t('label.start'),
-          to: this.localePath('/dok'),
-          exact: true,
-        },
-        {
           label: this.$t('label.design'),
           children: [
             {
@@ -64,19 +59,12 @@ export default {
               to: this.localePath('/dok/desain/ikonografi'),
             },
             {
+              label: this.$t('label.spacing'),
+              to: this.localePath('/dok/desain/spacing'),
+            },
+            {
               label: this.$t('label.layouting'),
               to: this.localePath('/dok/desain/layouting'),
-            },
-          ],
-        },
-        {
-          label: this.$t('label.components'),
-          children: [
-            {
-              label: 'A',
-            },
-            {
-              label: 'B',
             },
           ],
         },
