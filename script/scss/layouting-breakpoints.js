@@ -65,6 +65,7 @@ async function run() {
 
             $cols: bp.$${breakpointName}-num-of-columns;
             @for $i from 1 through $cols {
+              .jds-col--#{$i}\\/#{$cols},
               .jds-col.jds-col-${breakpointName}--#{$i}\\/#{$cols} {
                 width: (100% * $i / $cols);
                 flex: none;

@@ -5,7 +5,7 @@
     </aside>
     <main class="app:layout-docs__main">
       <JDSRow>
-        <JDSColumn col-lg="9/12">
+        <JDSColumn col="9/12">
           <nuxt-child></nuxt-child>
         </JDSColumn>
         <JDSColumn></JDSColumn>

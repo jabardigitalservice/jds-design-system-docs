@@ -9,7 +9,7 @@ import _upperFirst from 'lodash/upperFirst'
 import _kebabCase from 'lodash/kebabCase'
 
 // TODO: jadi constant
-const breakpoints = ['xs', 'sm', 'md', 'lg']
+const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl']
 
 function makeProps(prefix, def) {
   return breakpoints.reduce((props, val) => {
