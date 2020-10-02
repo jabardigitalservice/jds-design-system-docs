@@ -17,6 +17,7 @@
 
     $cols: bp.$xs-num-of-columns;
     @for $i from 1 through $cols {
+      .jds-col--#{$i}\/#{$cols},
       .jds-col.jds-col-xs--#{$i}\/#{$cols} {
         width: (100% * $i / $cols);
         flex: none;
@@ -42,6 +43,7 @@
 
     $cols: bp.$sm-num-of-columns;
     @for $i from 1 through $cols {
+      .jds-col--#{$i}\/#{$cols},
       .jds-col.jds-col-sm--#{$i}\/#{$cols} {
         width: (100% * $i / $cols);
         flex: none;
@@ -67,6 +69,7 @@
 
     $cols: bp.$md-num-of-columns;
     @for $i from 1 through $cols {
+      .jds-col--#{$i}\/#{$cols},
       .jds-col.jds-col-md--#{$i}\/#{$cols} {
         width: (100% * $i / $cols);
         flex: none;
@@ -92,7 +95,34 @@
 
     $cols: bp.$lg-num-of-columns;
     @for $i from 1 through $cols {
+      .jds-col--#{$i}\/#{$cols},
       .jds-col.jds-col-lg--#{$i}\/#{$cols} {
+        width: (100% * $i / $cols);
+        flex: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: bp.$xl-breakpoint-min-width) and (max-width: bp.$xl-breakpoint-max-width) {
+  .jds-row {
+    margin: -(bp.$xl-column-gutter);
+    padding: bp.$xl-row-margin / 2;
+
+    .jds-col {
+      padding: bp.$xl-column-gutter / 2;
+      flex: 1 1 auto;
+    }
+
+    .jds-col.jds-col-xl--1 {
+      width: 100%;
+      flex: none;
+    }
+
+    $cols: bp.$xl-num-of-columns;
+    @for $i from 1 through $cols {
+      .jds-col--#{$i}\/#{$cols},
+      .jds-col.jds-col-xl--#{$i}\/#{$cols} {
         width: (100% * $i / $cols);
         flex: none;
       }
